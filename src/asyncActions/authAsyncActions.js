@@ -20,7 +20,7 @@ import {
     if (result.status === 204)
       dispatch(verifyTokenEnd());
     else
-      dispatch(verifyUserSuccess(result.data));
+      dispatch(verifyUserSuccess(result.headers["access-token"], result.headers["client"], result.headers["uid"]));
   }
   
   // handle user login
