@@ -20,7 +20,7 @@ function Dashboard() {
     dispatch(userLogoutAsync());
   }
 
-  // get user list
+  // get todo list
   const getTodoList = async () => {
     setAuthToken(token,client,uid);
     const result = await getToDoListService(token,client,uid);
@@ -44,22 +44,39 @@ function Dashboard() {
     }
   }, [expiredAt, token]) */
 
-  // get user list on page load
+  // get tofo list on page load
   useEffect(() => {
     getTodoList();
   }, []);
 
   return (
-
-    <div>
-    <h3 className= "font-italic" > Welcome {uid}!</h3><br />
-    <div className='float-right'>
-    <input className= "btn btn-warning" type="button" onClick={handleLogout} value="Logout" /><br /><br />
+       <div className="container">
+          <div>
+            <div className="row mb-5">
+              <input className="btn btn-info" type="button" onClick={getTodoList} value="Get Data" />
+              <p className="ml-auto">
+                <b>Hello {uid}!</b>
+                <input className="btn btn-danger ml-3" type="button" onClick={handleLogout} value="Logout" />
+              </p>
+            </div>
+            <h2 className="text-center mb-4"> Your List of ToDo's:</h2>
+          </div>
+        <div className="row ">
+        {todoList.map((todo, index) =>
+            <div key={index} todo={todo} className="table">
+              <div className="table-header bg-dark text-white text-center">
+                <b>{todo.title}</b>
+              </div>
+              {todo.items.map(item =>
+              <ul className="list-group-item">
+                <li key={index} className={"list-group-item" + (item.done? 'done':'')}>
+                  {item.name}
+                </li>
+              </ul>)}
+            </div>
+        )}
+        </div>
     </div>
-    <input className= "btn btn-secondary" type="button" onClick={getTodoList} value="Get Data" /><br /><br />
-    <h3 className="text-center"><b >To Do List:</b></h3>
-    <pre>{JSON.stringify(todoList, null, 2)}</pre>
-  </div>
   );
 }
 

@@ -29,7 +29,7 @@ import {
   }
   
   // user login - failure
-  export const userLoginFailure = (error = 'Something went wrong. Please try again later.') => {
+  export const userLoginFailure = (error = 'Incorrect login information. Please try again.') => {
     return {
       type: USER_LOGIN_FAILURE,
       payload: {
@@ -39,12 +39,12 @@ import {
   }
   
   // verify token - success
-  export const verifyUserSuccess = ({ token, client, uid }) => {
+  export const verifyUserSuccess = (token, client, uid) => {
     return {
       type: VERIFY_USER_SUCCESS,
       payload: {
         token,
-       client,
+        client,
         uid
       }
     }

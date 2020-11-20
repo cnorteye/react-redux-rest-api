@@ -31,7 +31,7 @@ function Login() {
       </div>
       <input
         type="button"
-        className= 'btn btn-info'
+        className= 'btn btn-info mt-3'
         style={{ marginTop: 10 }}
         value={userLoginLoading ? 'Loading...' : 'Login'}
         onClick={handleLogin}

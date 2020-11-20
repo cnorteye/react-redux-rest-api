@@ -32,7 +32,7 @@ export const verifyTokenService = async () => {
 // user login API to validate the credential
 export const userLoginService = async (username, password) => {
   try {
-    return await axios.post(`${API_URL}/auth/sign_in`, { email:username, password:password  });
+    return await axios.post(`${API_URL}/auth/sign_in`, { email:username, password:password });
   } catch (err) {
     return {
       error: true,
@@ -44,7 +44,7 @@ export const userLoginService = async (username, password) => {
 // manage user logout
 export const userLogoutService = async () => {
   try {
-    return await axios.post(`${API_URL}/auth/sign_out`);
+    return await axios.delete(`${API_URL}/auth/sign_out`);
   } catch (err) {
     return {
       error: true,
